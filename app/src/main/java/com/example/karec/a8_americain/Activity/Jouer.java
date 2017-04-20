@@ -1,11 +1,12 @@
-package com.example.karec.a8_americain;
+package com.example.karec.a8_americain.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.karec.a8_americain.R;
 
 /**
  * Created by Karec on 18/04/2017.

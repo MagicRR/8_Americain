@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.karec.a8_americain.Activity.Jouer;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button jouerAct;
