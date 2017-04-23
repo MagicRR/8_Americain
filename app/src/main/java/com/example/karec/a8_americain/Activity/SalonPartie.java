@@ -74,6 +74,10 @@ public class SalonPartie extends AppCompatActivity {
                         }
                     });
 
+                    SocketServerReplyThread socketServerReplyThread = new SocketServerReplyThread(
+                            socket, count);
+                    socketServerReplyThread.run();
+
                 }
             } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -82,6 +86,9 @@ public class SalonPartie extends AppCompatActivity {
         }
     }
 
+
+
+    //utiliser pour "renvoyer un message"
     private class SocketServerReplyThread extends Thread {
 
         private java.net.Socket hostThreadSocket;
@@ -91,7 +98,41 @@ public class SalonPartie extends AppCompatActivity {
             hostThreadSocket = socket;
             cnt = c;
         }
+        @Override
+        public void run() {
+            OutputStream outputStream;
+            String msgReply = "\nHello";
 
+            try {
+                outputStream = hostThreadSocket.getOutputStream();
+                PrintStream printStream = new PrintStream(outputStream);
+                printStream.print(msgReply);
+                printStream.close();
+
+                message += "replayed: " + msgReply + "\n";
+
+                SalonPartie.this.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        viewJOUEUR.setText(message);
+                    }
+                });
+
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                message += "Something wrong! " + e.toString() + "\n";
+            }
+
+            SalonPartie.this.runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    viewJOUEUR.setText(message);
+                }
+            });
+        }
     }
 
 

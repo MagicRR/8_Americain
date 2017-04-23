@@ -90,6 +90,7 @@ public class ListeViewParties extends Activity {
      * notice:
      * inputStream.read() will block if no data return
      */
+                response = "connexion reussie";
                 while ((bytesRead = inputStream.read(buffer)) != -1){
                     byteArrayOutputStream.write(buffer, 0, bytesRead);
                     response += byteArrayOutputStream.toString("UTF-8");
